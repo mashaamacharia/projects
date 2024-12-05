@@ -1,0 +1,14 @@
+{% extends "master.html" %}
+{% load static %}
+
+{% block title %}Home - MK Hostels{% endblock %}
+
+{% block content %}
+<section id="home" class="text-center text-light d-flex align-items-center" style="background: url('{% static "img/banner.jpg" %}') center/cover no-repeat; height: 100vh;">
+    <div class="container">
+        <h1 class="display-4">Welcome to MK Hostels</h1>
+        <p class="lead">Your perfect home away from home.</p>
+        <a href="{% url 'about' %}" class="btn btn-primary btn-lg mt-4">Learn More</a>
+    </div>
+</section>
+{% endblock %}
