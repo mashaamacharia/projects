@@ -1,0 +1,85 @@
+{% extends "master.html" %}
+{% load static %}
+
+{% block title %}About - MK Hostels{% endblock %}
+
+{% block content %}
+<section id="about" class="py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h2 class="display-4">About MK Hostels</h2>
+                <p class="lead">MK Hostels has been providing safe, comfortable, and affordable accommodation for students and travelers for over a decade. We strive to create a community-oriented environment where our residents can live, study, and relax with ease.</p>
+                <p>We offer a variety of room options, including single, double, and shared rooms, all equipped with modern amenities. Whether you're a student looking for a place to call home during the academic year or a traveler seeking a convenient and budget-friendly stay, MK Hostels has something for you.</p>
+                <p>Our mission is to ensure our residents feel comfortable, secure, and part of a community. We offer high-speed internet, 24/7 security, communal kitchens, and leisure areas to make your stay as enjoyable as possible.</p>
+                <a href="{% url 'contact' %}" class="btn btn-primary btn-lg mt-4">Contact Us</a>
+            </div>
+            <div class="col-md-6">
+                <img src="{% static 'img/about.jpg' %}" alt="MK Hostels" class="img-fluid rounded shadow">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="services" class="py-5">
+    <div class="container">
+        <h2 class="display-4 text-center mb-4">Our Services</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card shadow">
+                    <img src="{% static 'img/room.jpg' %}" class="card-img-top" alt="Service 1">
+                    <div class="card-body">
+                        <h5 class="card-title">Comfortable Rooms</h5>
+                        <p class="card-text">Our rooms are designed for relaxation and productivity, offering a peaceful environment with all the essentials to make your stay comfortable.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card shadow">
+                    <img src="{% static 'img/security.png' %}" class="card-img-top" alt="Service 2">
+                    <div class="card-body">
+                        <h5 class="card-title">24/7 Security</h5>
+                        <p class="card-text">Our facilities are equipped with round-the-clock security, ensuring that you feel safe and secure at all times during your stay with us.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card shadow">
+                    <img src="{% static 'img/internet.jpg' %}" class="card-img-top" alt="Service 3">
+                    <div class="card-body">
+                        <h5 class="card-title">High-Speed Internet</h5>
+                        <p class="card-text">Stay connected with our high-speed internet available throughout the hostel, making it perfect for both work and leisure activities.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="testimonials" class="py-5 bg-light">
+    <div class="container">
+        <h2 class="display-4 text-center mb-4">What Our Residents Say</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="testimonial">
+                    <p class="lead">"MK Hostels has been the perfect place for me. The rooms are comfortable, the staff is friendly, and I always feel safe here!"</p>
+                    <p class="text-muted">- John, 2nd Year Student</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="testimonial">
+                    <p class="lead">"I love the community feel here at MK Hostels. It's easy to make new friends and study in a quiet, comfortable environment."</p>
+                    <p class="text-muted">- Sarah, Exchange Student</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="testimonial">
+                    <p class="lead">"The best hostel I've stayed in! The internet is fast, and the security makes me feel at ease. Highly recommend it!"</p>
+                    <p class="text-muted">- Ahmed, Graduate Student</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
