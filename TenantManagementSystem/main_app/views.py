@@ -122,7 +122,6 @@ def login_register(request):
     })
 
 
-@login_required(login_url='login_register')
 def tenant_details(request):
     # Retrieve tenant ID from session
     tenant_id = request.session.get('tenant_id')
