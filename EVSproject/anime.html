@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Storybook</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        #storybook {
+            width: 300px;
+            height: 400px;
+            border: 2px solid #333;
+            border-radius: 10px;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        #story-text {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        #story-image {
+            width: 100%;
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        button {
+            font-size: 16px;
+            padding: 10px;
+            margin: 0 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="storybook">
+        <div id="story-image"></div>
+        <div id="story-text"></div>
+        <button id="prev-btn">Previous</button>
+        <button id="next-btn">Next</button>
+    </div>
+
+    <script>
+        const storyPages = [
+            {
+                text: "Once upon a time, there was a little red bird.",
+                image:'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5OjcBCgoKDQwNGg8PGjclHyU3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3N//AABEIALcAwwMBIgACEQEDEQH/xAAcAAACAgMBAQAAAAAAAAAAAAAEBQMGAAIHAQj/xABAEAABAwIDBQYCCQMDAwUAAAACAAEDBBIFESEGEyIxQRQyQlFhcYGRByMzUmKhscHRFSTwNHLhU+LxQ3OCkqL/xAAbAQACAwEBAQAAAAAAAAAAAAACAwABBAUGB//EACgRAAICAgICAQQBBQAAAAAAAAABAhEDIRIxBEFRBRMiYTIUYnHB8f/aAAwDAQACEQMRAD8AquETbqYVYSxGL7yrdNFejIofrlwU/wAqExGgAVQd1vCizEQC0xUFKZB3CW9WfAt32k0aUhdXMPgSKR+PiTWpJJaiTjV/bjEptI0la9YMd6xnUgOokrBsjeOziBTR1Zd0l4bqAxTqKTLDgeK9iqfrS/t5NJBbp5E3t+jurFtH2PscsdbJJ9YLO27YSZmfK3PJ2y8+vJlzzfkHCrBgMMGKBuZbu1CPCefeZmybT00VocpXorR4dxlxXeRebLU6IgVsxPDN1Dvg+Itnz88vJLGFRoriV04yQ0jJ3XRCHcS4or0p9gtG2zICe0OHiZWiUws5ejpx9KFB2XaEhHu26KvPCQHcBWkJZsTaOz+avu0uHljWx9DtBddMIsE3u2jp0JaaKcTlrtYiaKQgPgU0tN4gWUsdhqSaaJWy2YRWjwifeVvoKkbFRcIjvNXKgCwFxPqE1H8UVkkkM3O5eKNytQs1QQLiqDZm7DuFYk71ixH9iRYBRQ8C3J91xGr5i+ygy3VGFW8Wu66Z+nkub49v6Uyp6gSjkHmJtk67rwzhPY5QaD6ati+8pKmrGzgJVCKQr+9wop5/xLoKWhoZV1QpTJIvZDvQ5MlTlYmdm28UkciFJ1gESpNoDkMWNbNxoSM0RCfGmxyBRJhgFMqESpTiqKf7SPX382QsbIppLEyxy0XOqp+0UwluyEagGIhyZnHNmyd/0VIroSpandn/AI3RWLBsfllCLDZYoyjEbYzbQ/Z369VHjlF2iHeAJXCWnLLJmdEhj2rKlVcaGaJFyv4fEtWtSpA2CbrjXRtmRgrfo3xWhuukjI3cfJ31bJc/J+NW/YMii7YVQP8AY1ETi5M7c25ZNmri0uw4Y5TdRVsoFqiIbFaq3ZiffSlSyQlHc7jmTs+WftkklXhlZSmI1UEkYkWV2WbP6M7aJX3FZMvj5sSucWl/gZ4DHcAq2RFYCR4RFuoRTCWa1cPyX9ybMUtsM3l68OLeoekPenxppkIAsslxI1QpekLNYmD25r1T7rBLGOLf02a47ij6izqetPZvakNzVbuQuhaMTP6Oz5sqTtJidsJCCpbTSj9YEhCXO5nydemwSahs1x0i5499GldT3TYLKNbD9x3Zjb0z5P8AkqdiGH12GzbmvppIZC5Cbc/ZPMB+kLFcNMY6gu0Qjpa+j/NdBgxXANs6Ps9UIlIXgPQwfzZ0fGMutETT6OM5rVuJXDaXYDEcKuqKC6to/RuMG9W6/BVykpL0ucGDNAe6Wwwp01FwKEqexL4yFcBa0a9cUcUCDqHs4VFENRNgqCDhRLTXggQ40WIJvNLQXRjykB3AVpDqxN0duqveFTxYpRwTHaN3DNpnaTZZtl66P8VQpBTjY6vKKvloTLhqh4fJjbVvm2bIo5N0XCe6Bdp6uKoxKWanuKG8mG9mbIWfRsm+KTPOnuN4b2Wb8JE/uzvqzIXCcJ7bU3Hwxx5OXq/Rvj+ymWXFjYY5ZMihHtjTZ/DYrBqKiLeTd5hPRhbpo+jv7ptVHOR8Un1hNoI5v+X8omna0C4R+XV/dayWwGRDbvOev/Cwzyv2e28XBj8dcYIWzR1QBoRZ83ue3L5KKCrrOIRj3g28XN2duvNS4w2MVWFDHhtSO8IzeQWyHNnyyyd8snbJ+uevotY4JaDB4o6qcpsQInaTid7c3d2zfrzyz9EyMbjdq/gDJ9QlGThLFaXsY4Nh44kcohTSQlHrdG7OIvlnk7P58ufnojajZQpe9WjGX42zz/RIqnaCpOEaWluhp49XGLTMn0d3dtXf10QYVMsp3HJJ/wDZ0ubxw7irPJ+ZPFLK5cav0hzU0H9PMYynhk/FEWeWXmz6sojqCBCwipKgOBc3JxlLSOdkS9GdoWIe1Yq4oVRX6/EhqJrbu6gJpr+EExrMMEEoILTtXoXHiqNMnR7GPGmFK5RGMkREJDqxNo7ISMUfAlJ7Fxey+7Obez09tPio7yHlezat7qyVOBYLtDD2zDSGOYtb48snf1ZckVlwCtqaIP7WUhu5+T+7LVGV6Y9bDcT2frsN+1jIo/vg2bf8KsYs/Z7fvLotDtVYG5rx4fvh+7IvG8BwfaygHdSCMw92eLLNvR26srcbWiNfBx/tl6Fne7iTXHdlsVwAy7VAUlP0njZ3F29fL4pSz3rFNST2A7PafhRwKCGnIlM9OQJE5JvsCVmkrocJCiqYpouEozYm92fNlKdy1jjvNFF1sXsveMRRV9BBWRD9XUBddpwvzdvfNnS/B4yioLj8RP7eWf5I7ZMt7QT0J/8Ap/WR+jPzb5/qptxF3QL8subp+WanjTPRfRoqWbm/SPL91Fb/APp311WjuJQ3DxfhbLPP9lLNEO64vh5syBZrTujIuvx9FkaTPVRipI0lgK/xXZ6jk2nzQGLSdlhKMeKQuWXRn0yf4MmoNJvRLdyW9G6Pn7IarwyAYZZJd5vSYn1bNxz1yZs/LJXFU1ZJ/wAeNiakt3I/7VMxWmh43WsxJM1cmfOs8rzSf7Y0hqES8l6SwERJpGVoLNkhTEyZLmKxCvPqvFXBg2R1o8FxqszDdMRJjW4gVR3OEUEy9BPZols2AeBbidi1uUUhpagCohYS3mn9JNYAiqhHNxp9RT3AnxQ1DSeZIpscrsKr99QTlHbrbno/uyaG94KuYnAV5F4UTZZ1nZz6RcMrcNEcUnjjqORROObO/nnllkjajZbZnHw7Rh5RwyFrdA7M2fq3JcNpGsm41ZcLr5acxKKUoy9HyWfNmS1JWgWy81WwU9LTFNTzjNb4GHJ3b0VcmpLbht+fNWDBdtp6e2Ot+uj6l1b+VZqnDsM2hpu0UpCMxeMOr+rLHPx45Vywvfwyqvo5JU0th91RQjaas+O4HXUBkVRFdH/1A1b4+ShwTDR3w1lUPCOsQv4vX2SUp3xkqZeHBPNkUIoPwbDpwDeFvIbhttZsndn6P5Ji1PBEHCRFNyHkz6eTdfioZ68j4YuLyFnzf3U9JGQmJHaXC73Frry5eXRPhBRVI9ZgwR8bGorX+wJ6GrLjnkG30dsvjogj4T4WH9k6rgDxTyXdOjPpl006ulFTGIiIj7vrlr6qnSdHS8fI5dm7SFZ3uER/8ulOKnPZcJFblpplk+ebPz9HTKnC64S4RFmz10dtdPTp80u2inGnAYx+0EX482fy0Vx/lQc5KKYBhMW9hIe8UZZfv+6ImohQmA1FsM5F4j/ZFzVfGsmXksro+e+ZGs8kvkh7PZ3V5LNugW8lSltdLcCuEXJ7EqNkUlbxusSR317y8XQ/p0HxGGXAtbrF4xcCjMlroNo2OVCyyrDJQG6qiJktJcUyslEHdSPCgvuL8Se0r22o0GgyQUNJGJo2UvqUJIViploTVFPYfAKGOcok3k40DVwXglNJvZbVmtLXEZ3EStuz+1FZhV3ZyG0u8Jtn8vJUBrojRdLPKZjGHERFkyVPE0+UdCuLvR2gNtoK2glHd3TW5WuObNnzf1QcFDPXndcMcItqXXTozfkqzg1HbaXFu4+fR5D6s3o37K1PiY0sNokN2raNo3R3+HL3SXkc3+T6PU+L48vHwpJfm+2D09J2XvSDxARsXUnfNm/b5qKbEREBERuKyx89Nc+nzQNdihSnuwER8hZssvL93SyonKLi8RDw+jef+efoh/VmumvyaGc1Xd4rvIs/n8P+ELVYh/bF3d4Wgi3uq3UYuRHbF9mOlzdXZS0tUIGJHaRa5l5Nl0dG8Rox548afY7nnKC7ituFrOLR3SDFKjezEV138omtnKWERO7zb38vZknqrgASAS3chPkTtoTs+T5eeXJHCJl+o+YscaCYZt1CIj7v7oeorSDiUbnwIWYr1I405WzxcrlJyfsOjxG7vKCrrbwtFAO1qxMWKKdkMzWLMlibZfIasFi0lC9Oq+htSrdElY86ki+Vi01CaZT0viS+aMgTlJPogZhp2XJwEir1MXGmoyWIkEgyep4FE096ElkvUcMiGQSYzFayuo4z4F4ZKJF2Lq+HxAnGyNAN/bqjhHVo9M8mbR3Zur65N6oHclVTDCHiLL2bq/wbNWbDzip6YZrfq49IQ++TaZv6N/L+ST5EqVHR+m4HPJyrroYhUDS270rSIXyF8maIOjeruhZawT4Q8XdHLXJuTZIYyKU+0VHFIWojy1838uns3q7KWK2nDeH3i5l+WTN5a5ZfDq+WE9RqOu2RQS8cpS8JXebOk+NVHaDGMO719m/z8lNXT8ZWFwyFdz1f0b+UAbWXXlxFzWnGl2c3JKc5cZGkYDZ+H9VIfctDwrRyEQuIrRHxO+jKCIqmv3nZ4yGnjzvNmdnJv2zTkmxWbPDCt9/AT2kqqpijlkIhvECLPXLNmyb93Vx+k2jgoqzDIaeMY4Y6dhjBmyYWbLkqLRxl2mDhttMcvRs2XQvpV46nDP8A2f4ToxpM4WfPLNK2URwvUE9N4kfCK9kZC0IaEhhYo0yqIUCQWIRMtGD3WWLXNYqoGzq9dhl4cApTHghX8YroMVJevSw8furlRuK0SjnVbgtgd1VrFaGwO6utYlSjuS4Vz/HwHiFXiyyUwkykRvZMmN6BqG+uXoGXdXaW0NQXdYoCLjWMozUaJYXFMQLcqhDRusJAWNsHP7eoLhG3dMXlnq7/AAZn+ac05DUcR/YxizMGmnkOXnyz9XZuWeUsOFQQbP7uX7Sx5eeTM7au7+jcm9/RC4ZT7qjEpS4rdB8nf9XfP/M1kyyUrZ6bx8cvGUY+2t/oMLgukl73vo3XJn/PP3f3V1dXd/t5MPK5+TszdG6flzd17X1d/Ddwjzyfnlrkz/LX/tZVyaeWomuArRHRstMm9FWDC5bZfl+bHx1/cw2eqiGYt6VxD8mQxVm9PdxWiRf9TTP+E0rNlZR2eixyinGthL/UiDcUBZ5a+beb6ZZ+WqrzxjF9rxF0Hy91tWNROLk87LLrQfhmGz4pjEFLiMnZ4yNh9GZ/Jm/VdYqcMwrBaAaG4Y47dB5kXq+S5RRQT1FtREVsglmJNyZ28/4T7D9/UHU1VUW8mhFiklMnyJn5fHPNsk7ikuT6MTyybr2zSuoRpcViGKUZISlFxLlpm2jt0Vm+lSqilr6GOIhK2HXJ88uSqZVQ1vc8JN0UGLH/AHP/AMUK3GwW6dG8ZcC2S8ZCBEDLwKqLTNpUHLHwIgnWkj8CTJAtWLrVilcdVisCj6ThiW0gqXuqOV+BYHGkRiDGH4CXLdpJrTJdKx2TgJcs2g4jJKxQuZSRWTK81JC161KNbwvYa7CGBQxLWWDgRsYrw0RdCuN01wGmGqxId79nCLyF7N/yls42TcHi/VO5W/pWG9lD/VVGTzF1FugpOTSr2zb4OJSyKUv4rbGdRinbLowH/UEzc+QN0/XNBYhiA8UNHaMcY/WTlqINy083flp7eaFpuICIytu4Wy5s3V29X/58krrqjtEwxhw04lkI9G6Z/JJhjTdHQ8zzptuS16R5U1JVE1oXbsdNebt5v/Dfy7+sNgLx4iiNRSOXjWuOlo4c5OUrkO9ltpy2er7uKSjm4amJ9WJuWbNyzb820XRsF2DwCtpv6tFSb6OrivgilYmHIssnYXfNm108uiE2Z+jzDMNoKbGtoS3xboZGpZRtjB3Zn4mfV8s8snybzZB7abdVx0wlRCUMZHZEWjOWXN2bLXLJm05ZsiWuyWa7UbURdjHDYhhGOMSjcGhEdGdmYWZmbJtOeTJPsbT0uKnWUtVdviBnjsJ2bJnd+XXJ3VSxCqKor6mTekQySub56Zu+rvl01zR2zWIlhuMU1R4b2YvZ9HQtkT2WLEaKWgqfrbS9v3VcxRy7Zxj7Lpm1NDvYd9b4c2yfz1zXPsXi/thI+8JKRdaJNexdavRksWsZrDZXYBI8ijKRQrHdA0Emb5rFGsVUQ+lt4h6uewELHU8CXYlW95cxy5AyFePVg2FxLnGMTb00+2gxDvcSqUsl60+Pj9hRRAbrQQXvfNTrYi+winPgW0joYHRlFAMt0lRcNPH9oTcyfoLer/kytyrsKMXJ0iWghGnD+pVHeEsqYH8RNzJ/Rv19lo10sxSHxFzcn835raWUqqbeGNoiOQg3IWbkzejLeMVlb5StnTj+MVGP/SGpeyG0B4i0bLo3VCRUJGmDtfN/t0+SNghT8apGHO+Uq+BKcVnfXRdh9ioqUIse2hjtGPjpqUx1d21Yib82b4ujcI2aocIoIMYxqMSqBK8YJXyYddM26vyfJ1WdrtsKzEjljiktj5MLcvX3TjPWwj6Strpa2YqGik+p53M+ebPyfTR82yf/ADWiBiBBhp0NRB2iHNzhO9xkgJ+bs7Z5s+TZs7ZPlno6iJyM7j7xc14TKiWCAylZasrLsTgdDj+MDh9fVyUu8F90QMz3O3TVCykrOjbPzf1rZKCQy+sELC92VH2kpCG4be9q3wXWMC2Ri2bw2Wnp6kpoyK5yPLPN+jMqJtlTWTEQd1Dd7HNao5/HGtnBSd0yFS2qxAGYockZKKEmZQiZrcsUNyxQKztf9REA7yR4tig2FxJNV4nZ4lXq/ECqDtuWHBitbLo3xKq7RN+FCioLls8li2qNIs3tG9bOyF3qlaVWQIp4ilmGMO8RZN5N6v6JlUkMtsNP/p4dB8yfq7+rpfQVQxGRH4gcWJmzyz5/lm3xUzyS1X1NBTTSFbm9gu5ZezcmS5pt0PxTjCLfthTgIQj+LX4LWaTs8JF4uQ+79UZhWBY/X7qGLDZLbbbpGeNss+bu6ssGxVHQW1G0OIDJbypYHdmbzZ3fV/gzKRwv2Ml5Cq12VzZrCa7ErRpaYpButc+Qs/PJ3fRdBwzCMO2etrMUnjkqB1EfCD9Gbzf16JdiO1EQ03YcFpo44Y8xEgZmEWfr7qszPKX1lRIUhfeN3f8AVO6Mg126xiWtr5acJPqY8rbCzZ3dmd3zZ9dVz2cyvTmrPwpXNHeCuwWiFnvXhOombjRACKgJCMSKpJpaKpiqKciGSMmJiZ8nzZbMy8IELLOk7K7cy1W9pa+cYyLJxvd3uUu0Y9thuC0vxNyyXNqMip5hmDvCTOuowPFW0EU0X2cw93ozoONdDoz5dnN8RhsO74OoI3Vhx2isMh+ard1h2ohTVM9mQsgqc3URsrAAHHVYp3DVYpRZasX2QxiE7R3Ml2rceWiXw7G41KYhu4xu671nWLFFFLoaTYnsZidBGJ3RyMWmTOzfq6QTUNVEdso2l7s/6OsWKyNKw/Btm8QxipCnooxuLxFIzM37qyRfRXjTnbNPSRD95icvyyWLFdIpDSP6O8KopRDEMUqJDtzPdAwj8M2d1YKPEcA2WpJIMLpi3niN2dyJ/V3XixUSWnor8/0hVIVN0Qjw5uw5Pln0d/PVIWr6rGKkpqqTvO5Fbpm781ixC5MoYRx2BahqwrQWLFaCFBDvTW3ZlixVIpgFXTbo7lGKxYrXQtkorbNYsULJRFXDYetKyWhL/cHosWKMKHY5rcOGsmGO0eImZ8tFRdqqCPD8SKGILbSdn1zWLFS6DyCJpFqUixYrEkeaxYsUKP/Z'
+
+            },
+            {
+                text: "The bird loved to sing beautiful songs.",
+                image: "/api/placeholder/300/200?text=Singing+Bird"
+            },
+            {
+                text: "One day, it made a new friend - a yellow sun!",
+                image: "/api/placeholder/300/200?text=Bird+and+Sun"
+            }
+        ];
+
+        let currentPage = 0;
+        const storyText = document.getElementById('story-text');
+        const storyImage = document.getElementById('story-image');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+
+        function updatePage() {
+            storyText.textContent = storyPages[currentPage].text;
+            storyImage.style.backgroundImage = `url('${storyPages[currentPage].image}')`;
+            prevBtn.disabled = currentPage === 0;
+            nextBtn.disabled = currentPage === storyPages.length - 1;
+        }
+
+        prevBtn.addEventListener('click', () => {
+            if (currentPage > 0) {
+                currentPage--;
+                updatePage();
+            }
+        });
+
+        nextBtn.addEventListener('click', () => {
+            if (currentPage < storyPages.length - 1) {
+                currentPage++;
+                updatePage();
+            }
+        });
+
+        updatePage();
+    </script>
+</body>
+</html>

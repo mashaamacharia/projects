@@ -1,0 +1,115 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    width: 90%;
+    margin: auto;
+    overflow: hidden;
+    padding: 20px;
+}
+
+h2 {
+    color: #333;
+    text-align: left;
+    margin-top: 30px;
+}
+
+.candidates-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.candidate-card {
+    width: 200px;
+    border: 1px solid aliceblue;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.candidate-image {
+    width: calc(100% - 20px); /* Adjust the width to account for padding */
+    height: 260px;
+    border-radius: 12px; /* Slightly more rounded corners */
+    margin-bottom: 12px; /* Increased margin for better spacing */
+    padding: 10px; /* Add padding to create space around the image */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a soft shadow for depth */
+    background-color:antiquewhite; /* Optional: Add a light background color to make the padding visible */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition effects */
+}
+
+.candidate-image:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Intensify the shadow on hover */
+}
+
+
+
+.candidate-info {
+    padding: 15px;
+    background-color: aliceblue;
+}
+
+.candidate-info h3 {
+    margin: 0 0 10px 0;
+    color:blueviolet
+}
+
+.candidate-info p {
+    margin: 0 0 15px 0;
+    color: #666;
+}
+
+.details-btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.details-btn:hover {
+    background-color: #45a049;
+}
+
+.candidate-description {
+    margin-top: 15px;
+    font-size: 0.9em;
+    color: #333;
+}
+header {
+    display: flex;
+    justify-content: center; /* Horizontally centers the image */
+    align-items: center; /* Vertically centers the image if header has height */
+    padding: 10px; /* Optional: Add some padding around the header */
+    background-color: #f4f4f4; /* Optional: Background color for the header */
+}
+.icon {
+  width: 100px;/* Ensures the image does not have any extra margins */
+  height: 100px;
+  margin-bottom: 10px; 
+}
+h1{
+    margin-top: 0; /* Remove default margin above the paragraph */
+    color: black;
+    text-align: center;
+}
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('Images/flexmashaa/pexels-edmond-dantes-7103203.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.6;
+    z-index: -1;
+}

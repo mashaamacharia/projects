@@ -1,0 +1,114 @@
+/* CSS for Voting Results Page */
+
+body {
+    
+    font-family: sans-serif;
+    background-color: #333;
+    color: #333;
+    margin: 20px;
+}
+
+.results-container {
+    width: 90%;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+}
+
+.position-section {
+    margin-bottom: 40px;
+}
+
+.position-section h2 {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.faculty-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.faculty-section {
+    width: 48%;
+    margin-bottom: 20px;
+}
+
+.faculty-section h3 {
+    margin-top: 0;
+    background-color: #f2f2f2;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f4f4f4;
+}
+
+td {
+    background-color: antiquewhite;
+    font-size: large;
+}
+
+.total-votes {
+    text-align: right;
+    font-weight: bold;
+    margin-top: 10px;
+    background-color: antiquewhite;
+    font-size: large;
+    color: #007bff;
+}
+
+/* New CSS for Total Votes per Faculty */
+.total-votes-faculty {
+    text-align: right;
+    font-weight: bold;
+    margin-top: 10px;
+    background-color:aliceblue;
+    color: #007bff;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+/* Adjusted total votes for position */
+.total-votes-position {
+    text-align: right;
+    font-weight: bold;
+    margin-top: 10px;
+    background-color: antiquewhite;
+    font-size: large;
+    color:#007bff;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* Overlay styling */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('images/flexmashaa/congrats.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.5;
+    z-index: -1;
+}

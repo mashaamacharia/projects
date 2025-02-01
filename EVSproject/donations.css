@@ -1,0 +1,96 @@
+/* Container for the donations page content */
+body{
+    background-color: #333;
+}
+.donations-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px;
+    background-color: aliceblue; /* Semi-transparent background to work with the image later */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    text-align: center;
+}
+
+/* Title styling */
+h1 {
+    font-size: 2.5rem;
+    color: black;
+    margin-bottom: 20px;
+}
+
+/* General paragraph styling */
+p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Intro paragraph styling */
+.intro {
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+/* Donation options container */
+.donation-options {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 30px;
+    gap: 15px;
+}
+
+/* Mpesa and PayPal section */
+.donation-options div {
+    background-color: antiquewhite;
+    padding: 20px;
+    border-radius: 10px;
+    width: 45%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.donation-options h3 {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+    color: black;
+}
+
+.mpesa p {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Styling for the PayPal image */
+.paypal-logo {
+    width: 150px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+/* Responsive design adjustments */
+@media (max-width: 768px) {
+    .donation-options {
+        flex-direction: column;
+    }
+    .donation-options div {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+}
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('Images/flexmashaa/pexels-edmond-dantes-7103203.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.6;
+    z-index: -1;
+}
